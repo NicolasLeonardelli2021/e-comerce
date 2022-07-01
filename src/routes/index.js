@@ -1,8 +1,8 @@
-const info = require("../components/info");
-
+//let personasApi = require("../components/personas");
+let rolesApi = require("../components/roles");
 
 module.exports = app =>{
-    info(app);
-    app.get("/info", (req,res)=> res.render("info",{}))
-
+    //personasApi(app);
+    rolesApi(app);
+    app.get("/", (req,res)=> res.send("Ok!"));
 }
