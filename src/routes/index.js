@@ -1,8 +1,9 @@
 //let personasApi = require("../components/personas");
-let rolesApi = require("../components/roles");
+let userApi = require("../components/auth");
 
 module.exports = app =>{
     //personasApi(app);
-    rolesApi(app);
-    app.get("/", (req,res)=> res.send("Ok!"));
+    userApi(app);
+    app.get("/", (req,res)=> res.redirect("auth"));
+    
 }

@@ -4,6 +4,8 @@ const cors = require('cors');
 const {config} = require('./config')
 let serverRoutes = require("./routes");
 let path = require("path");
+const multer = require('multer');
+const uuid = require('uuid/v4');
 
 class Server{
     constructor(){
@@ -28,6 +30,29 @@ class Server{
 
     middleware(){
         this.app.use(cors('*'));
+        const storage = multer.diskStorage({
+            destination: path.join(__dirname, 'public/uploads'),
+            filename: (req, file, cb,filename) => {
+            cb(null, uuid() + path.extname(file.originalname));
+            }
+        });
+        
+        this.app.use(multer({
+            storage,
+            dest: path.join(__dirname, 'public/uploads'),
+            /* fileFilter: function (req, file, cb) {
+        
+                var filetypes = /jpeg|jpg|png|gif/;
+                var mimetype = filetypes.test(file.mimetype);
+                var extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        
+                if (mimetype && extname) {
+                    return cb(null, true);
+                }
+                cb("Error: File upload only supports the following filetypes - " + filetypes);
+            }, */
+            //limits: {fileSize: 1000000},
+        }).single('image'));
     }
 
     routes(){

@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) =>{
             type: DataTypes.STRING,
             allowNull: false
         },
-        username: {
+        email: {
           type: DataTypes.STRING,
           allowNull: false
         },
@@ -22,44 +22,29 @@ module.exports = (sequelize, DataTypes) =>{
           type: DataTypes.STRING,
           allowNull: false
         },
-        photo: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
         phone: {
           type: DataTypes.STRING,
           allowNull: true
         },
-        token: {
-          type: DataTypes.STRING,
-          allowNull: true
-        },
-        last_activity_at: {
-            type: DataTypes.DATE,
+        photo: {
+            type: DataTypes.STRING,
             allowNull: true
-        },
-        enabled: {
-          type: DataTypes.BOOLEAN,
-          allowNull: true
         },
         rol_id: {
           type: DataTypes.INTEGER,
           allowNull: false,
-          references:{
+        /*   references:{
               model: "roles",
               key: "id"
-          }
+          } */
         },
-        created_at: {
-          type: DataTypes.DATE
-        }
       }, {
-          tableName: 'users',
+          tableName: 'user',
           timestamps: false,
           underscored: true
       });
 
-      User.associate = (Models) => {
+    /*   User.associate = (Models) => {
         const { Role } = Models;
 
         User.belongsTo(Role, {
@@ -68,7 +53,7 @@ module.exports = (sequelize, DataTypes) =>{
             as: "role"
         });
         
-      }
+      } */
 
 
       return User;
