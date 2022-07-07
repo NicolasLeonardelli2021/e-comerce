@@ -31,7 +31,7 @@ class Server{
     middleware(){
         this.app.use(cors('*'));
         const storage = multer.diskStorage({
-            destination: path.join(__dirname, 'public/uploads'),
+            destination: path.join(__dirname, 'public/uploadsUser'),
             filename: (req, file, cb,filename) => {
             cb(null, uuid() + path.extname(file.originalname));
             }
@@ -39,8 +39,8 @@ class Server{
         
         this.app.use(multer({
             storage,
-            dest: path.join(__dirname, 'public/uploads'),
-            /* fileFilter: function (req, file, cb) {
+            dest: path.join(__dirname, 'public/uploadsUser'),
+             fileFilter: function (req, file, cb) {
         
                 var filetypes = /jpeg|jpg|png|gif/;
                 var mimetype = filetypes.test(file.mimetype);
@@ -50,7 +50,7 @@ class Server{
                     return cb(null, true);
                 }
                 cb("Error: File upload only supports the following filetypes - " + filetypes);
-            }, */
+            }, 
             //limits: {fileSize: 1000000},
         }).single('image'));
     }

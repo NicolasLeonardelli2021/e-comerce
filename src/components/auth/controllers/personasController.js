@@ -15,7 +15,7 @@ class Personas {
             if(personas == ""){
                 res.send("usuario no valido")
             }else{
-                res.send(personas)
+                res.redirect("/productos");
             }
         } catch (error) {
             console.log(error);

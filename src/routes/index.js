@@ -1,9 +1,11 @@
 //let personasApi = require("../components/personas");
-let userApi = require("../components/auth");
+let authUser = require("../components/auth");
+let productos= require("../components/productos");
 
 module.exports = app =>{
     //personasApi(app);
-    userApi(app);
+    authUser(app);
+    productos(app);
     app.get("/", (req,res)=> res.redirect("auth"));
     
 }
