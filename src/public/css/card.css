@@ -1,0 +1,28 @@
+.contCard{
+    background-color: white;
+    margin-top: 1%;
+    border: solid;
+    border-radius: 18px;
+}
+.tituloCard{
+    font-size: 23px;
+}
+
+.precioCard{
+    color: green;
+    font-style: italic;
+    font-weight: 800;
+    font-size: 225%;
+}
+
+.descripcion{
+    font-size: 80%;
+    color: cadetblue;
+}
+.contCentral{
+    text-align: center;
+}
+
+.cant{
+    width: 25%;
+}

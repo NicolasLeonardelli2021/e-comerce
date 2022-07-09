@@ -1,0 +1,49 @@
+<div class="container border-success contCard">
+    <div class="row">
+        <div class="col-3 ">
+            <img src="<%=producto.imagen %>" class="card-img-top" alt="...">
+        </div>
+        <div class="col-7 contCentral">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title tituloCard"><%=producto.nombre %></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <p class="card-text descripcion"><%=producto.descripcion %> </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <span class="card-text">STOCK: <%=producto.stock %> &nbsp &nbsp &nbsp &nbsp</span>
+                        
+                        <span> COGIGO: <%= producto.codigo %> </span>
+                        
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <h4 class="card-title precioCard">$ <%=producto.precio %></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-2">
+            <form action="">
+                <div>
+                    <span>Cantidad</span>
+                    <input class="cant" type="number">
+                </div>
+                <div>
+                    <input id="prodId" name="prodId" type="hidden" value="<%= producto.id %>">
+                    <input type="submit" class="btn btn-success" value="Añadir al carrito">
+                </div>
+            </form>
+            <!--<button class="btn btn-primary" onclick="agregarProdCarrito('<%=//producto.id%>')">Agregar al carrito</button>-->
+        </div>
+    </div>
+</div>
+

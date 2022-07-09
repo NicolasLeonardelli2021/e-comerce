@@ -4,8 +4,10 @@ class Producto{
 
     async traerProductos(req,res,next){
                 try {
-            let productos = await productoServices.getProductos();
-            res.json(productos);
+            let array = await productoServices.getProductos();
+            //console.log(productos);
+            res.render("principal",{array});
+            //res.json(array)
         } catch (error) {
             console.log(error)
         }
@@ -14,8 +16,8 @@ class Producto{
     async productosCategoria(req,res,next){
         let {categoria} = req.params;
         try {
-            let productos = await productoServices.getProductosCategoria(categoria);
-            res.json(productos);
+            let array = await productoServices.getProductosCategoria(categoria);
+            res.render("principal",{array});
         } catch (error) {
             console.log(error)
         }
@@ -46,7 +48,7 @@ class Producto{
 
     }
 
-    
+
 }
 
 module.exports = new Producto();

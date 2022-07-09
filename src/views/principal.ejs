@@ -1,3 +1,10 @@
-<%- include("./vistaProductos/header.ejs") -%>
-<%-// include("./vistaProductos/productos.ejs") -%>
+<%- include("templates/head.ejs", {titulo: "productos" }) -%>
+<%- include("./templates/barraSup1.ejs") -%>
+<%- include("./templates/barraSup2.ejs") -%>
+<div class="container contenedor">
+    <% 
+            for(productos of array){ %>
+        <%- include("./templates/card.ejs", {producto: productos }) -%>
+      <%} %>
+    </div>
 <%- include("./vistaProductos/footer.ejs") -%>

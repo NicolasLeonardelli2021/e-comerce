@@ -1,0 +1,37 @@
+a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-weight: bold;
+}
+.row{
+    align-items: center;
+}
+
+
+#bar{
+    display: inline-flex;
+}
+
+#bar div{
+    margin-left: 25px;
+}
+
+.menuUser{
+    display: flex;
+    justify-content: end;
+    color: black;
+}
+
+.salir{
+    margin-left: 25px;
+}
+
+.filainf{
+    height: 40px;
+}
+
+.contenedor{
+    display: grid;
+    margin-top: 1%;
+    background-color: rgb(213, 213, 213);
+}

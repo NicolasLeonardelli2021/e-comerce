@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) =>{
             primaryKey: true,
             autoIncrement: true
           },
+          codigo: {
+            type: DataTypes.STRING,
+            allowNull: false
+          },
         nombre: {
           type: DataTypes.STRING,
           allowNull: false
@@ -29,6 +33,10 @@ module.exports = (sequelize, DataTypes) =>{
           },
           imagen: {
             type: DataTypes.STRING,
+            allowNull: false
+          },
+          stock: {
+            type: DataTypes.INTEGER,
             allowNull: false
           }
       }, {

@@ -1,0 +1,45 @@
+<%- include("templates/head.ejs", {titulo: "productos" }) -%>
+<%- include("./templates/barraSup1.ejs") -%>
+<div class="row filainf">        
+    <div class="col-8" id="bar">
+        <div>
+            <a href="productos/categoria/audiovideo">audio y Video</a>
+        </div>
+        <div>
+            <a href="/productos/categoria/gaming">Gaming</a>
+        </div>
+        <div>
+            <a href="/productos/categoria/celulartablet">Celular y tablet</a>
+        </div>
+        <div>
+            <a href="/productos/categoria/computacion">Computacion</a>
+        </div>
+        <div>
+            <a href="/productos/categoria/hogaroficina">Hogar y Oficina</a>
+        </div>
+        <div>
+            <a href="/productos/categoria/herramientas">Herramientas</a>
+        </div>
+        
+    </div>
+    <div class="col-3" style="display:inline-flex; color: black">
+     
+        <% //if(usuario.rol == "administrador") {%> 
+            <div>
+                <a href="./ingreso"> Ingresar productos</a>             
+            </div>
+            <% //} %> 
+    </div>
+    <div class="col-1">
+        
+            <a href="./carrito/1/productos"><img src="/images/pages/carritoTransp.png" alt="carrito" style="height: 30px; width: 30px;"></a>
+          
+    </div>
+    
+
+           
+    </div>
+</div>
+
+</body>
+</html>
