@@ -15,6 +15,14 @@ module.exports = (sequelize, DataTypes) =>{
           timestamps: false,
           underscored: true
     })
+   /*  Categoria.associate= (Models) =>{
+      const {Productos} = Models;
+
+      Categoria.hasOne(Productos, {
+        foreingKey: "id_categoria",
+          constraints: true,
+      }) 
+    } */
 
     return Categoria
 }

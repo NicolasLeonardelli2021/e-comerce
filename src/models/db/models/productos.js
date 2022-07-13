@@ -44,14 +44,14 @@ module.exports = (sequelize, DataTypes) =>{
           timestamps: false,
           underscored: true
       })
-     /*  Productos.associate= (Models) =>{
+      /*  Productos.associate= (Models) =>{
         const {Categoria} = Models;
 
         Productos.belongsTo(Categoria, {
-          foreingKey: "id_categoria",
+          foreingKey: "id",
             constraints: true,
-        }) */
-      //}
+        })  
+      }*/
       return Productos
     
     }

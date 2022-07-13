@@ -1,5 +1,7 @@
+let {Rol} = require("./roles");
+
 module.exports = (sequelize, DataTypes) =>{
-    const User = sequelize.define('User', {
+    const Usuario = sequelize.define('Usuario', {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -33,30 +35,13 @@ module.exports = (sequelize, DataTypes) =>{
         rol: {
           type: DataTypes.INTEGER,
           allowNull: false,
-          /*  references:{
-              model: "Rol",
-              key: "id"
-          }  */
-        },
+          
+        }
       }, {
           tableName: 'user',
           timestamps: false,
-          underscored: true
+         
       });
 
-        User.associate = (Models) => {
-        const { Rol } = Models;
-
-        User.belongsTo(Rol, {
-            foreingKey: "rol",
-            constraints: true,
-            //as: "role"
-        });
-        
-      } 
-
-
-      return User;
+      return Usuario;
 }
-
-

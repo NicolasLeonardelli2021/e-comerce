@@ -6,6 +6,7 @@ let serverRoutes = require("./routes");
 let path = require("path");
 const multer = require('multer');
 const uuid = require('uuid/v4');
+require('./models/db/asociations')
 
 class Server{
     constructor(){

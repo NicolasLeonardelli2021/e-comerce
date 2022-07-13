@@ -1,7 +1,8 @@
 // let personasDB = require("../../../models/PersonasDaoMem");
 //let DTO = require("./DTO")
 //const redis = require("../../../utils/redis");
-const {User} = require("../../../models");
+const {Usuario} = require("../../../models");
+const {Rol} = require("../../../models");
 let datosUser ="";
 class Personas {
     async login(email,password){
@@ -42,7 +43,7 @@ class Personas {
         const rutaImage = '/uploadsUser/'+imagen
         try {
             let user = await User.create({name:`${datosUser.nombre}`,last_name:`${datosUser.apellido}`,email:`${datosUser.username}`,
-            password:`${datosUser.password}`,phone:`${datosUser.area}${datosUser.telefono}`,photo:`${rutaImage}`,rol_id:2});
+            password:`${datosUser.password}`,phone:`${datosUser.area}${datosUser.telefono}`,photo:`${rutaImage}`,rolesID:2});
             return true
         } catch (error) {
             return false
@@ -52,7 +53,14 @@ class Personas {
 
     async mostrarUser(){
         try {
-            let personas = await User.findAll();
+            let personas = await Usuario.findAll({
+                include : {
+                    model: Rol,
+                    attributes: ['name']
+                  },
+                  attributes: ['name','email']
+                }
+            );
             return personas;
         } catch (error) {
             console.log(error)
