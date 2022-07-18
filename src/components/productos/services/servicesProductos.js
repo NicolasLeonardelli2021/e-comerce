@@ -1,10 +1,15 @@
-const {Productos} = require("../../../models");
-const {Categoria} = require("../../../models");
+const Productos = require("../../../models/models/Productos");
+const Categoria = require("../../../models/models/Categoria");
 
 class Producto{
     async getProductos(){
         try {
-            let productos =  await Productos.findAll();
+            let productos =  await Productos.findAll({
+              include: {
+                model: Categoria 
+              }
+            });
+            
             return productos
         } catch (error) {
             console.log(error)
@@ -28,7 +33,6 @@ class Producto{
         } catch (error) {
             
         }
-      
     }
 
     async getProductosId(id){

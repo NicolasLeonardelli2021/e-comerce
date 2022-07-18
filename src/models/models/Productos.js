@@ -1,5 +1,6 @@
+const {Model, DataTypes} = require('sequelize')
+const sequelize = require("../config/sequelize");
 
-module.exports = (sequelize, DataTypes) =>{
     const Productos = sequelize.define('Productos', {
         id: {
             type: DataTypes.INTEGER,
@@ -26,10 +27,10 @@ module.exports = (sequelize, DataTypes) =>{
           id_categoria: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            references:{
+            /* references:{
               model: 'categoria',
               key:'id'
-            }
+            } */
           },
           imagen: {
             type: DataTypes.STRING,
@@ -40,18 +41,10 @@ module.exports = (sequelize, DataTypes) =>{
             allowNull: false
           }
       }, {
+        sequelize,
           tableName: 'productos',
           timestamps: false,
-          underscored: true
+         
       })
-      /*  Productos.associate= (Models) =>{
-        const {Categoria} = Models;
 
-        Productos.belongsTo(Categoria, {
-          foreingKey: "id",
-            constraints: true,
-        })  
-      }*/
-      return Productos
-    
-    }
+    module.exports = Productos

@@ -6,4 +6,7 @@ module.exports = app =>{
     app.use("/carrito", router);
 
     router.get("/", carritoController.traerProductos);
+    router.post("/entry",carritoController.agregarItemCarrito)
+    router.put("/update/:id", carritoController.actualizar)
+    router.delete("/delete/:id",carritoController.borrar)
 }

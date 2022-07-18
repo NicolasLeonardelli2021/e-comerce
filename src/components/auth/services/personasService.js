@@ -1,8 +1,13 @@
 // let personasDB = require("../../../models/PersonasDaoMem");
 //let DTO = require("./DTO")
 //const redis = require("../../../utils/redis");
-const {Usuario} = require("../../../models");
-const {Rol} = require("../../../models");
+//const {Usuario} = require("../../../models");
+//const {Rol} = require("../../../models");
+const Productos = require("../../../models/models/Productos")
+const Categoria = require("../../../models/models/Categoria")
+
+const User = require("../../../models/models/User")
+const Rol = require("../../../models/models/Rol")
 let datosUser ="";
 class Personas {
     async login(email,password){
@@ -53,12 +58,8 @@ class Personas {
 
     async mostrarUser(){
         try {
-            let personas = await Usuario.findAll({
-                include : {
-                    model: Rol,
-                    attributes: ['name']
-                  },
-                  attributes: ['name','email']
+            let personas = await User.findAll({
+               
                 }
             );
             return personas;
