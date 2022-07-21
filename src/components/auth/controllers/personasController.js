@@ -1,4 +1,6 @@
 let personasServices = require("../services/personasService");
+let JWT = require("../../../utils/JWT")
+
 //let Singleton = require("../../../utils/singleton")
 class Personas {
 
@@ -7,16 +9,18 @@ class Personas {
     }
  
     async login(req,res,next){
-        
         try {
             let {email,password} = req.body
             // let singleton = new Singleton();
             let personas = await personasServices.login(email,password);
-            if(personas == ""){
-                res.send("usuario no valido")
+             if(personas == ""){
+                let text = "Usuario o Contraseña incorrectos"
+                res.render("alert",{text});
             }else{
+                req.session.ids = personas[0].id;
+                req.session.nombre = personas[0].name;
                 res.redirect("/productos");
-            }
+            } 
         } catch (error) {
             console.log(error);
         }
@@ -57,6 +61,19 @@ class Personas {
             console.log(error)
         }
     }
+
+    async salir(req,res,next){
+        let nombre = req.session.nombre
+        req.session.destroy(err => {
+            if (err) {
+            return res.json({ status: 'Logout ERROR', body: err })
+            }
+            let text = `Hasta luego ${nombre}`
+            res.render('alert',{text})
+            })
+    }
+
+    
 
 }
 

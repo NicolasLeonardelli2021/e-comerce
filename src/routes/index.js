@@ -8,6 +8,6 @@ module.exports = app =>{
     authUser(app);
     productos(app);
     carrito(app)
-    app.get("/", (req,res)=> res.redirect("auth"));
+    app.get("/", (req,res)=> res.redirect("/auth"));
     
 }

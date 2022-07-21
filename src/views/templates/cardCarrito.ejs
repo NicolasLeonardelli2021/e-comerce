@@ -1,0 +1,44 @@
+<hr>
+<div class="container border-success contCardCarrito">
+    <div class="row">
+        <div class="col-2 ">
+            <img src="<%=producto.Producto.imagen %>" class="card-img-top" alt="...">
+        </div>
+        <div class="col-5 contCentral">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h5 class="card-title tituloCard"><%=producto.Producto.nombre %></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">                        
+                        <span> COGIGO: <%= producto.Producto.codigo %> </span>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <span><a id="<%=ids%>" class="linkCarrito" href="#" onclick="borrarProducto(id)"> Eliminar</a></span>&nbsp &nbsp &nbsp &nbsp
+
+                <span><a href="" class="linkCarrito">Comprar ahora</a></span>
+            </div>
+        </div>
+        <div class="col-3">
+            <form id="formCantidad">
+                <div>
+                    <input id="prodId" name="prodId" type="hidden" value="<%= producto.id %>">
+                    <input class="cant" type="number" name="cantidad" value="<%= producto.cantidad %>" >
+                    <p class="stockCarrito">stock <%=producto.Producto.stock %></p>
+                    <input type="submit" class="btn btn-outline-success btn-sm" value="Aceptar">
+                </div>
+                <div>
+                </div>
+            </form>
+            <!--<button class="btn btn-primary" onclick="agregarProdCarrito('<%=//producto.id%>')">Agregar al carrito</button>-->
+        </div>
+        <div class="col-2">
+            <h4 class="card-title precioCard">$ <%=producto.Producto.precio * producto.cantidad%></h4>
+        </div>
+    </div>
+</div>
+

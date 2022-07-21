@@ -3,12 +3,12 @@ let carritoService = require("../service/serviceCarrito");
 class Carrito{
 
     async traerProductos(req,res,next){
-        let {idCarrito} = req.body
+        let {idUsuario} = req.body;
+        let cantCarrito = await carritoService.countCarrito(req.session.ids);
+
         try {
-    let array = await carritoService.getCarrito(idCarrito);
-    //console.log(productos);
-    //res.render("principal",{array});
-    res.json(array)
+    let array = await carritoService.getCarrito(req.session.ids);
+    res.render("carrito",{array,cantCarrito});
 } catch (error) {
     console.log(error)
 }
@@ -17,11 +17,12 @@ class Carrito{
 async agregarItemCarrito(req,res,next){
     let {idProducto} = req.body;
     let {cantidad} = req.body;
-    let {idCarrito} = req.body;
+    let idCarrito = 1;
+    console.log(idProducto,cantidad)
     try {
         let respuesta = await carritoService.agregarItemCarrito(idProducto,cantidad,idCarrito);
         if(respuesta != ""){
-            res.send("producto ingresado correctamente")
+            res.redirect('./')        
         }
        
     } catch (error) {
@@ -32,13 +33,11 @@ async agregarItemCarrito(req,res,next){
 async actualizar(req,res,next){
     let {id} = req.params;
     let {cantidad} = req.body
-
+    console.log(id,cantidad)
     try {
         let respuesta = await carritoService.actualizar(id,cantidad)
-        if(respuesta != ""){
-            res.json(respuesta)
-        }
-    } catch (error) {
+        res.redirect('/');
+        } catch (error) {
         console.log(error)
     }
 }
@@ -46,13 +45,11 @@ async borrar(req,res,next){
     let {id} = req.params;
     try {
         let respuesta = await carritoService.borrar(id);
-        res.json(respuesta);
+        res.redirect('/')
     } catch (error) {
         console.log(error)
     }
 }
 }
-
-
 
 module.exports = new Carrito();

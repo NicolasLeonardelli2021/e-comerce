@@ -1,0 +1,34 @@
+<%- include("templates/head.ejs", {titulo: "Carrito" }) -%>
+<%- include("./templates/barraSup1.ejs") -%>
+<%- include("./templates/barraSup2.ejs",{carrito: cantCarrito}) -%>
+<div class="container contenedor">
+  <div class="row" >
+    <h2 style="text-align:center ;">Mi Carrito de Compras</h2>
+</div>
+<div class="row" >
+  <% 
+          for(productos of array[0].Items){ %>
+      <%- include("./templates/cardCarrito.ejs", {producto: productos, ids: productos.id }) -%>
+    <%} %>
+  </div>
+  <hr>
+  <div class="row" >
+    <div class="col-8">
+      
+    </div>
+    <div class="col-4">
+      <h2>Total:   $5000</h2>
+    <br>
+    <button class="btn btn-success">Continuar Compra</button>
+    </div>
+    
+  </div>
+  <br>
+  <br>
+
+</div>
+  
+</div>
+
+</body>
+</html>

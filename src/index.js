@@ -7,6 +7,10 @@ let path = require("path");
 const multer = require('multer');
 const uuid = require('uuid/v4');
 require('./models/asociations')
+const session =require("express-session");
+//const cookieParser = require('cookie-parser')
+//let File_store = require("session-file-store")(express_session)
+
 
 class Server{
     constructor(){
@@ -22,7 +26,8 @@ class Server{
         this.app.use(express.json());
         this.app.use(express.urlencoded({extended:true}));
         this.app.use(express.static(__dirname + "/public"));
-    }
+         //this.app.use(cookieParser())
+     }
 
     views(){
         this.app.set("views",path.join( __dirname,"./views"));
@@ -54,7 +59,14 @@ class Server{
             }, 
             //limits: {fileSize: 1000000},
         }).single('image'));
-    }
+    
+
+     this.app.use(session({
+        secret: 'secret',
+        resave: true,
+        saveUninitialized:true,
+    })); 
+}
 
     routes(){
         serverRoutes(this.app);
@@ -69,5 +81,6 @@ class Server{
         })
     }
 }
+
 
 module.exports = new Server();

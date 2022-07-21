@@ -1,17 +1,20 @@
-
 const carrito = require("../../../models/models/Carrito");
 const item = require("../../../models/models/Item");
 const producto = require("../../../models/models/Productos")
+const sequelize = require("sequelize");
 
 class Carrito{
 
 async getCarrito(user){
     try {
         let productos =  await carrito.findAll({
+            attributes:['fechaHora'], //'id_producto','cantidad', 'imagen','nombre','codigo','stock','precio'], 
           include: {
             model: item,
+            attributes:['id','id_producto','cantidad'],
             include:{
-                model: producto
+                model: producto,
+                attributes:['imagen','nombre','codigo','stock','precio']
             }
           },
           where:{
@@ -35,8 +38,6 @@ async getCarrito(user){
     }
 
     async actualizar(id, cantidad){
-        console.log(id);
-        console.log(cantidad);
         try {
             let res = await item.update({cantidad: `${cantidad}`},{
                 where: {
@@ -57,6 +58,19 @@ async getCarrito(user){
                 }
             })
            return res;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async countCarrito(user){
+        try {
+            let res = await item.count({
+                where:{
+                    id_carrito: `${user}`
+                }
+            })
+            return res; 
         } catch (error) {
             console.log(error)
         }

@@ -1,5 +1,7 @@
 const Productos = require("../../../models/models/Productos");
 const Categoria = require("../../../models/models/Categoria");
+const serviceCarrito = require("../../carrito/service/serviceCarrito")
+
 
 class Producto{
     async getProductos(){
@@ -54,6 +56,15 @@ class Producto{
             let ingreso = await Productos.create({nombre: `${datos.nombre}`,precio: `${Number(datos.precio)}`, descripcion: `${datos.descripcion}`, 
             id_categoria: `${Number(datos.categoria)}`, imagen: `${datos.imagen}`});
             return ingreso;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async countCarrito(user){
+        try {
+            let res = serviceCarrito.countCarrito(user);
+            return res;
         } catch (error) {
             console.log(error)
         }
