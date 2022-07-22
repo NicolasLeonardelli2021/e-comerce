@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/css/card.css">
     <title> Productos</title>
 </head>
-<%- include("./templates/barraSup1.ejs") -%>
+<%- include("./templates/barraSup1.ejs",{nombre: name, foto:photo }) -%>
 <%- include("./templates/barraSup2.ejs",{carrito: cantCarrito}) -%>
 <div class="container contenedor">
     <% 

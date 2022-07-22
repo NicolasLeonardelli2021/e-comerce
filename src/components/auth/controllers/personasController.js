@@ -1,5 +1,5 @@
 let personasServices = require("../services/personasService");
-let JWT = require("../../../utils/JWT")
+//let JWT = require("../../../utils/JWT")
 
 //let Singleton = require("../../../utils/singleton")
 class Personas {
@@ -19,6 +19,7 @@ class Personas {
             }else{
                 req.session.ids = personas[0].id;
                 req.session.nombre = personas[0].name;
+                req.session.imagen = personas[0].photo
                 res.redirect("/productos");
             } 
         } catch (error) {

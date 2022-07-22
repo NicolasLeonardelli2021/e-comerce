@@ -4,6 +4,7 @@ const Productos = require('../models/Productos');
 const Categoria = require('../models/Categoria');
 const Carrito = require('../models/Carrito');
 const Items = require('../models/Item');
+const Orden = require('../models/Orden');
 
  User.belongsTo(Rol,{
     foreignKey: 'rol_id'
@@ -31,8 +32,22 @@ Items.belongsTo(Productos,{
 
 Productos.hasOne(Items,{
     foreignKey: 'id_producto'
+});
+
+Orden.hasMany(Items,{
+    foreignKey: 'id_orden'
 })
 
+Items.belongsTo(Orden,{
+    foreignKey: 'id_orden'
+})
 
+User.hasOne(Orden,{
+    foreignKey: 'id_user'
+});
+
+Orden.belongsTo(User,{
+    foreignKey: 'id_user'
+});
 
 

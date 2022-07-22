@@ -11,7 +11,7 @@ const sequelize = require("../config/sequelize");
       autoIncrement: true
     },
     id_usuario: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     fechaHora: {

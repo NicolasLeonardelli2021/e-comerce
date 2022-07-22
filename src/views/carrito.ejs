@@ -1,5 +1,5 @@
 <%- include("templates/head.ejs", {titulo: "Carrito" }) -%>
-<%- include("./templates/barraSup1.ejs") -%>
+<%- include("./templates/barraSup1.ejs",{nombre: name}) -%>
 <%- include("./templates/barraSup2.ejs",{carrito: cantCarrito}) -%>
 <div class="container contenedor">
   <div class="row" >
@@ -8,7 +8,7 @@
 <div class="row" >
   <% 
           for(productos of array[0].Items){ %>
-      <%- include("./templates/cardCarrito.ejs", {producto: productos, ids: productos.id }) -%>
+      <%- include("./templates/cardCarrito.ejs", {producto: productos, ids: productos.id}) -%>
     <%} %>
   </div>
   <hr>
@@ -17,7 +17,7 @@
       
     </div>
     <div class="col-4">
-      <h2>Total:   $5000</h2>
+      <h2>Total:  <%= array[1].sumaTotal %></h2>
     <br>
     <button class="btn btn-success">Continuar Compra</button>
     </div>

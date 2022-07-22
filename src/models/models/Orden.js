@@ -3,33 +3,30 @@ const sequelize = require("../config/sequelize");
 
 //class Rol extends Model {}
  //Rol.init({
-    const Items = sequelize.define('Items', {
+    const Orden = sequelize.define('Orden', {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    id_producto: {
-      type: DataTypes.INTEGER,
+    fechaHora: {
+      type: DataTypes.DATE,
       allowNull: false
     },
-    cantidad: {
+    id_user: {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      id_carrito: {
-        type: DataTypes.INTEGER,
-        allowNull: true
-      },
-      id_orden: {
-        type: DataTypes.INTEGER,
-        allowNull: true
+      estado: {
+        type: DataTypes.STRING,
+        allowNull: false
       }
   },{
     sequelize,
-    tableName: 'items',
+    tableName: 'ordenes',
       timestamps: false,
+     
  })
 
- module.exports = Items
+ module.exports = Orden

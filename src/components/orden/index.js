@@ -1,13 +1,15 @@
 let {Router} = require("express");
-let carritoController = require("./controller/controllerCarrito");
+let ordenController = require("./controllers");
 
 module.exports = app =>{
     let router = new Router();
-    app.use("/carrito", router);
+    app.use("/ordenes", router);
+    
+    router.post()
 
-    router.get("/",isLogin, carritoController.traerProductos);
+    /* router.get("/",isLogin, carritoController.traerProductos);
     router.put("/:id", isLogin, carritoController.actualizar)
-    router.delete("/:id", isLogin, carritoController.borrar)
+    router.delete("/:id", isLogin, carritoController.borrar) */
 }
 
 let isLogin = (req,res,next)=>{

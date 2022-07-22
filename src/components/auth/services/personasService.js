@@ -13,7 +13,7 @@ class Personas {
     async login(email,password){
         try {
             let personas = await User.findAll({
-                attributes: ["id","name"],
+                attributes: ["id","name","photo"],
                 where: {
                     email: `${email}`,
                     password: `${password}`

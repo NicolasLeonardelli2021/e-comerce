@@ -1,15 +1,16 @@
-let JWT = require("../../../utils/JWT");
+//let JWT = require("../../../utils/JWT");
 let productoServices = require("../services/servicesProductos");
 
 class Producto{
 
     async traerProductos(req,res,next){
+        let name = req.session.nombre;
+        let photo = req.session.photo;
         //console.log(req)
              try {         
-             console.log(req.session.ids)
              let array = await productoServices.getProductos();
             let cantCarrito = await productoServices.countCarrito(req.session.ids);
-            res.render("principal",{array,cantCarrito}); 
+            res.render("principal",{array,cantCarrito,name, photo}); 
             //res.json(array)
         } catch (error) {
             console.log("error")
@@ -18,11 +19,13 @@ class Producto{
 
     async productosCategoria(req,res,next){
         let {categoria} = req.params;
+        let name = req.session.nombre;
+        let photo = req.session.photo;
 
         try {
             let array = await productoServices.getProductosCategoria(categoria);
             let cantCarrito = await productoServices.countCarrito(req.session.ids);
-            res.render("principal",{array,cantCarrito});
+            res.render("principal",{array,cantCarrito,name, photo});
         } catch (error) {
             console.log(error)
         }
@@ -52,29 +55,6 @@ class Producto{
         }
 
     }
-
-    async auth(req, res, next) {
-        const authHeader = req.headers.authorization ;
-
-        console.log(authHeader);
-
-        if (!authHeader ) {
-         return res.status(401).json({
-         error: 'not authenticated'
-         });
-         }
-        const token = authHeader .split(' ')[1];
-        jwt.verify(token, (err, decoded) => {
-         if (err) {
-         return res.status(403).json({
-         error: 'not authorized'
-         });
-         }
-         req.user = decoded.data;
-         next();
-         });
-        }
-
 
 }
 

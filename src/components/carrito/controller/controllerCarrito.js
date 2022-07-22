@@ -4,15 +4,17 @@ class Carrito{
 
     async traerProductos(req,res,next){
         let {idUsuario} = req.body;
-        let cantCarrito = await carritoService.countCarrito(req.session.ids);
-
+        let name = req.session.nombre;
+        let photo = req.session.photo;
+        let id = req.session.ids
         try {
-    let array = await carritoService.getCarrito(req.session.ids);
-    res.render("carrito",{array,cantCarrito});
-} catch (error) {
+        let cantCarrito = await carritoService.countCarrito(id);
+        let array = await carritoService.getCarrito(id);
+        res.render("carrito",{array,cantCarrito,name, photo,});
+    } catch (error) {
     console.log(error)
-}
-}
+    }
+    }
 
 async agregarItemCarrito(req,res,next){
     let {idProducto} = req.body;
@@ -31,6 +33,7 @@ async agregarItemCarrito(req,res,next){
 }
 
 async actualizar(req,res,next){
+    console.log("entro a actualizar")
     let {id} = req.params;
     let {cantidad} = req.body
     console.log(id,cantidad)
@@ -43,6 +46,7 @@ async actualizar(req,res,next){
 }
 async borrar(req,res,next){
     let {id} = req.params;
+    console.log(id)
     try {
         let respuesta = await carritoService.borrar(id);
         res.redirect('/')

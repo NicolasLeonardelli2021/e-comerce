@@ -21,13 +21,24 @@ async getCarrito(user){
             id_usuario: `${user}`
           }
         });
-        
-        return productos
+        let total = await this.calculoTotal(productos)
+
+        productos.push({sumaTotal:total})
+        return productos;
     } catch (error) {
         console.log(error)
     }
     }
 
+    async calculoTotal(productos){
+        let prod = productos[0].Items  
+        let sumador = 0;
+        for(let i=0; i <prod.length; i++){
+            sumador += prod[i].cantidad * prod[i].Producto.precio
+        }
+        return sumador
+
+    }
     async agregarItemCarrito(id_producto,cantidad,id_carrito){
         try {
             let ingreso = await item.create({id_producto: `${id_producto}`, cantidad: `${cantidad}`, id_carrito: `${id_carrito}`})
@@ -75,6 +86,10 @@ async getCarrito(user){
             console.log(error)
         }
     }
+
+    // Calcular el precio total de los productos del carrito.
+
+    async 
 }
 
 module.exports = new Carrito()
