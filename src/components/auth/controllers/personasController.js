@@ -17,9 +17,14 @@ class Personas {
                 let text = "Usuario o Contraseña incorrectos"
                 res.render("alert",{text});
             }else{
-                req.session.ids = personas[0].id;
+                let idUser = personas[0].id;
+                req.session.idUser = idUser;
+                
                 req.session.nombre = personas[0].name;
                 req.session.imagen = personas[0].photo
+                let idCarrito = await personasServices.traerIdCarrito(idUser);
+                req.session.idCarrito = idCarrito[0].id;
+
                 res.redirect("/productos");
             } 
         } catch (error) {

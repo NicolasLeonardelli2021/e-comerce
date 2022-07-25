@@ -9,7 +9,7 @@ class Producto{
         //console.log(req)
              try {         
              let array = await productoServices.getProductos();
-            let cantCarrito = await productoServices.countCarrito(req.session.ids);
+            let cantCarrito = await productoServices.countCarrito(req.session.idCarrito);
             res.render("principal",{array,cantCarrito,name, photo}); 
             //res.json(array)
         } catch (error) {

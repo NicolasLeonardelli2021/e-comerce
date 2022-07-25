@@ -61,9 +61,9 @@ class Producto{
         }
     }
 
-    async countCarrito(user){
+    async countCarrito(idCarrito){
         try {
-            let res = serviceCarrito.countCarrito(user);
+            let res = serviceCarrito.countCarrito(idCarrito);
             return res;
         } catch (error) {
             console.log(error)

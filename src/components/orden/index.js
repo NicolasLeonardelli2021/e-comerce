@@ -5,7 +5,7 @@ module.exports = app =>{
     let router = new Router();
     app.use("/ordenes", router);
     
-    router.post()
+    router.get("/", ordenController.vistaOrden);
 
     /* router.get("/",isLogin, carritoController.traerProductos);
     router.put("/:id", isLogin, carritoController.actualizar)

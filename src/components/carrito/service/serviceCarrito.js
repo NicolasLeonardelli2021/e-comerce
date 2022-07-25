@@ -6,6 +6,7 @@ const sequelize = require("sequelize");
 class Carrito{
 
 async getCarrito(user){
+    console.log(user);
     try {
         let productos =  await carrito.findAll({
             attributes:['fechaHora'], //'id_producto','cantidad', 'imagen','nombre','codigo','stock','precio'], 
@@ -74,11 +75,11 @@ async getCarrito(user){
         }
     }
 
-    async countCarrito(user){
+    async countCarrito(idCarrito){
         try {
             let res = await item.count({
                 where:{
-                    id_carrito: `${user}`
+                    id_carrito: `${idCarrito}`
                 }
             })
             return res; 
@@ -86,10 +87,6 @@ async getCarrito(user){
             console.log(error)
         }
     }
-
-    // Calcular el precio total de los productos del carrito.
-
-    async 
 }
 
 module.exports = new Carrito()

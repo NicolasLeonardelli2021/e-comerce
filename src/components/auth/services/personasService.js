@@ -5,7 +5,7 @@
 //const {Rol} = require("../../../models");
 const Productos = require("../../../models/models/Productos")
 const Categoria = require("../../../models/models/Categoria")
-
+const carrito = require("../../../models/models/Carrito");
 const User = require("../../../models/models/User")
 const Rol = require("../../../models/models/Rol")
 let datosUser ="";
@@ -63,6 +63,28 @@ class Personas {
                 }
             );
             return personas;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async traerIdCarrito(user){
+        try {
+            let tieneCarrito = await carrito.count({
+                where:{
+                    id_usuario: `${user}`
+                }
+            })
+            if(tieneCarrito == 0){
+                let crearCarrito = await carrito.create({id_usuario: user})
+            }
+            let id = await carrito.findAll({
+                attributes: ['id'],
+                where:{
+                    id_usuario: `${user}`
+                }
+            })
+            return id;
         } catch (error) {
             console.log(error)
         }

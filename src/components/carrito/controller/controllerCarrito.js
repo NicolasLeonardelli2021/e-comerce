@@ -6,10 +6,11 @@ class Carrito{
         let {idUsuario} = req.body;
         let name = req.session.nombre;
         let photo = req.session.photo;
-        let id = req.session.ids
+        let idCarrito = req.session.idCarrito
+        let idUser = req.session.idUser
         try {
-        let cantCarrito = await carritoService.countCarrito(id);
-        let array = await carritoService.getCarrito(id);
+        let cantCarrito = await carritoService.countCarrito(idCarrito);
+        let array = await carritoService.getCarrito(idUser);
         res.render("carrito",{array,cantCarrito,name, photo,});
     } catch (error) {
     console.log(error)
@@ -19,8 +20,13 @@ class Carrito{
 async agregarItemCarrito(req,res,next){
     let {idProducto} = req.body;
     let {cantidad} = req.body;
-    let idCarrito = 1;
-    console.log(idProducto,cantidad)
+    let idCarrito = req.session.idCarrito;
+
+    if(cantidad == 0){
+        cantidad = 1;
+    }
+
+
     try {
         let respuesta = await carritoService.agregarItemCarrito(idProducto,cantidad,idCarrito);
         if(respuesta != ""){

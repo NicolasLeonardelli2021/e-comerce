@@ -1,0 +1,58 @@
+<%- include("templates/head.ejs", {titulo: "Carrito" }) -%>
+<%- include("./templates/barraSup1.ejs",{nombre: name}) -%>
+<%- include("./templates/barraSup2.ejs",{carrito: cantCarrito}) -%>
+<div class="container contenedor">
+  <div class="row" >
+    <h2 style="text-align:center ;">Orden de Compra</h2>
+    <hr>
+    <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Datos del Usuario</u></h4>
+</div>
+<div class="row" >
+  <div class="col-3"></div>
+  <div class="col-3">
+    
+    <p>ORDEN</p>
+    <p>FECHA Y HORA</p>
+    <p>NOMBRE Y APELLIDO</p>
+    <p>EMAIL</p>
+    <p>TEL. Nº</p>
+  </div>
+  <div class="col-2"></div>
+  <div class="col-3">
+    <p>25</p>
+    <p>23/07/2022</p>
+    <p>Nicolas Leonardelli</p>
+    <p>nicolas@gmail.com</p>
+    <p>3454109488</p>
+  </div>
+  <div class="col-1"></div>
+</div>
+<hr>
+<div class="row">
+  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Productos para la compra</u></h4>
+</div>
+<%- include("templates/itemsOrden.ejs") -%>
+<%- include("templates/itemsOrden.ejs") -%>
+<%- include("templates/itemsOrden.ejs") -%>
+<%- include("templates/itemsOrden.ejs") -%>
+<hr>
+<div class="row">
+</div>
+<div class="row">
+  <div class="col-7"></div>
+  <div class="col-3">  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Total de Compra</u></h4>
+  </div>
+  <div class="col-1"> <h2>$2000</h2></div>
+  <div class="col-1"></div>
+</div>
+<div class="row">
+  <a href="" class="btn btn-success">Aceptar y Enviar</a>
+</div>
+  <br>
+  <br>
+
+</div>
+  
+</div>
+</body>
+</html>

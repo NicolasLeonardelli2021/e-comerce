@@ -22,6 +22,7 @@ Productos.belongsTo(Categoria,{
 Carrito.hasMany(Items,{
     foreignKey: 'id_carrito'
 });
+
 Items.belongsTo(Carrito,{
     foreignKey: 'id_carrito'
 });

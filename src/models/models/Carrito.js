@@ -16,7 +16,7 @@ const sequelize = require("../config/sequelize");
     },
     fechaHora: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     }
   },{
     sequelize,
