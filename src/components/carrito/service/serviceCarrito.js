@@ -22,7 +22,7 @@ async getCarrito(user){
             id_usuario: `${user}`
           }
         });
-        let total = await this.calculoTotal(productos)
+        let total = await this.calculoTotal(productos[0].Items)
 
         productos.push({sumaTotal:total})
         return productos;
@@ -32,7 +32,7 @@ async getCarrito(user){
     }
 
     async calculoTotal(productos){
-        let prod = productos[0].Items  
+        let prod = productos 
         let sumador = 0;
         for(let i=0; i <prod.length; i++){
             sumador += prod[i].cantidad * prod[i].Producto.precio

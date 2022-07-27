@@ -1,11 +1,12 @@
 let {Router} = require("express");
-let ordenController = require("./controllers");
+let ordenController = require("./controllers/controllerOrden");
 
 module.exports = app =>{
     let router = new Router();
     app.use("/ordenes", router);
     
-    router.get("/", ordenController.vistaOrden);
+    router.get("/", isLogin, ordenController.vistaOrden);
+    router.get("/generar", isLogin, ordenController.generar);
 
     /* router.get("/",isLogin, carritoController.traerProductos);
     router.put("/:id", isLogin, carritoController.actualizar)

@@ -18,6 +18,12 @@ Categoria.hasMany(Productos,{
 Productos.belongsTo(Categoria,{
     foreignKey: 'id_categoria'
 });
+User.hasOne(Carrito,{
+    foreignKey:'id_usuario'
+})
+Carrito.belongsTo(User,{
+    foreignKey:'id_usuario'
+})
 
 Carrito.hasMany(Items,{
     foreignKey: 'id_carrito'

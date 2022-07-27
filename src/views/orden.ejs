@@ -19,11 +19,11 @@
   </div>
   <div class="col-2"></div>
   <div class="col-3">
-    <p>25</p>
-    <p>23/07/2022</p>
-    <p>Nicolas Leonardelli</p>
-    <p>nicolas@gmail.com</p>
-    <p>3454109488</p>
+    <p>XX</p>
+    <p><%= datos.fecha %></p>
+    <p><%= datos.nombre + " " + datos.apellido %>  </p>
+    <p><%= datos.email %> </p>
+    <p><%= datos.telefono %> </p>
   </div>
   <div class="col-1"></div>
 </div>
@@ -31,10 +31,14 @@
 <div class="row">
   <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Productos para la compra</u></h4>
 </div>
-<%- include("templates/itemsOrden.ejs") -%>
-<%- include("templates/itemsOrden.ejs") -%>
-<%- include("templates/itemsOrden.ejs") -%>
-<%- include("templates/itemsOrden.ejs") -%>
+  <div class="row" >
+    <% 
+            for(productos of datos.items){ %>
+        <%- include("./templates/itemsOrden.ejs", {items:productos}) -%>
+      <%} %>
+    </div>
+
+
 <hr>
 <div class="row">
 </div>
@@ -42,12 +46,20 @@
   <div class="col-7"></div>
   <div class="col-3">  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <u>Total de Compra</u></h4>
   </div>
-  <div class="col-1"> <h2>$2000</h2></div>
-  <div class="col-1"></div>
+  <div class="col-2"> <h2>$<%= datos.total %></h2>
+    <br>
+  </div>
 </div>
 <div class="row">
-  <a href="" class="btn btn-success">Aceptar y Enviar</a>
-</div>
+  <div class="col-9">
+    </div>
+    <div class="col-1">
+      <a href="" class="btn btn-primary">Cancelar</a>
+      </div>
+      <div class="col-2">
+        <a href="/ordenes/generar" class="btn btn-success">Aceptar y Enviar</a>
+        </div>
+  </div>
   <br>
   <br>
 

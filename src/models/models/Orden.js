@@ -12,7 +12,7 @@ const sequelize = require("../config/sequelize");
     },
     fechaHora: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     id_user: {
         type: DataTypes.INTEGER,
@@ -20,7 +20,7 @@ const sequelize = require("../config/sequelize");
       },
       estado: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       }
   },{
     sequelize,
