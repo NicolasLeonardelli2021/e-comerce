@@ -7,11 +7,10 @@ class Orden{
         let idUser = req.session.idUser;
         let name = req.session.nombre;
         let photo = req.session.photo
-        let cantCarrito = 2
-
+ 
         try {
             let datos = await serviceOrden.datosOrden(idUser);
-            console.log(datos.items[0].cantidad)
+            let cantCarrito = await serviceOrden.countCarrito(req.session.ids);
             res.render('orden',{name,photo,cantCarrito,datos})
 
         } catch (error) {
@@ -23,8 +22,12 @@ class Orden{
     async generar(req,res,next){
         let idUser = req.session.idUser;
         let idCarrito = req.session.idCarrito;
+        let name = req.session.nombre;
+        let photo = req.session.photo
         try {
+            let cantCarrito = await serviceOrden.countCarrito(req.session.ids);
             let datos = await serviceOrden.generar(idUser,idCarrito);
+            res.render('alert2',{name,photo,cantCarrito});
         } catch (error) {
             console.log(error)
         }

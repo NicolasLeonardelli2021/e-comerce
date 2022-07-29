@@ -1,0 +1,21 @@
+<%- include("templates/head.ejs", {titulo: "Carrito" }) -%>
+<%- include("./templates/barraSup1.ejs",{nombre: name}) -%>
+<%- include("./templates/barraSup2.ejs",{carrito: cantCarrito}) -%>
+<div class="container" style="background-color:white; text-align: center;">
+    <br>
+    <br>    
+    <h1> Enviado con Exito</h1>    
+    <br>
+        <img src="/images/pages/check-green.gif" alt="">
+</div>
+  
+</div>
+
+<script>
+    function redireccionarPagina() {
+    window.location = "/";
+    }
+    setTimeout("redireccionarPagina()", 3000);
+</script>
+</body>
+</html>

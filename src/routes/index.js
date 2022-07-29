@@ -11,6 +11,11 @@ module.exports = app =>{
     productos(app);
     carrito(app)
     orden(app)
-    app.get("/", (req,res)=> res.redirect("/auth"));
-    
-}
+    app.get("/", (req,res)=> {
+            if(req.session.nombre){
+                res.redirect("/productos")
+            }else{
+                res.redirect("/auth");
+            }
+        } )
+    }
