@@ -17,11 +17,13 @@ class Personas {
                 let text = "Usuario o Contraseña incorrectos"
                 res.render("alert",{text});
             }else{
+                
                 let idUser = personas[0].id;
                 req.session.idUser = idUser;
-                
+                req.session.email = personas[0].email;
                 req.session.nombre = personas[0].name;
-                req.session.imagen = personas[0].photo
+                req.session.imagen = personas[0].photo;
+                req.session.rol = personas[0].rol_id;
                 let idCarrito = await personasServices.traerIdCarrito(idUser);
                 req.session.idCarrito = idCarrito[0].id;
 

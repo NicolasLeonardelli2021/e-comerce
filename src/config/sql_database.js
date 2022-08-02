@@ -32,7 +32,7 @@ class Shop {
                     console.log("Error al conectador al cliente de Sequelize");
                     reject("Error");
                 }
-                console.log("Conectados a Sequelize");
+                console.log("Sequelize coneccion establecida");
                 resolve(this.client);
             })
         }

@@ -18,4 +18,10 @@ let db_credential = {
     DB_dialect: process.env.DB_DIALECT
 }
 
-module.exports = {config,db_credential}
+let mongo_db = {
+    uri: process.env.MONGO_DB_URI,
+    name: process.env.MONGO_DB_NAME,
+    mongo_atlas: process.env.MONGO_ATLAS
+}
+
+module.exports = {config,db_credential,mongo_db}

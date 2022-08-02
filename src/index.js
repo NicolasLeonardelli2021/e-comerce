@@ -6,8 +6,13 @@ let serverRoutes = require("./routes");
 let path = require("path");
 const multer = require('multer');
 const uuid = require('uuid/v4');
+let {Server: HttpServer} = require('http')
+let {Server:SocketIO} = require('socket.io');
 require('./models/asociations')
+let moment = require("moment");
 const session =require("express-session");
+let chatModel = require("./models/mongoose/db_mongoose")
+
 //const cookieParser = require('cookie-parser')
 //let File_store = require("session-file-store")(express_session)
 
@@ -16,6 +21,7 @@ class Server{
     constructor(){
         this.app = express();
         this.port = process.env.PORT || config.port;
+        this.http = HttpServer(this.app)
         this.settings();
         this.views();
         this.middleware();
@@ -66,6 +72,28 @@ class Server{
         resave: true,
         saveUninitialized:true,
     })); 
+
+    // Socket 
+    let io = new SocketIO(this.http);
+    io.on("connection", socket =>{
+        console.log("Nuevo cliente conectado: ", socket.id)
+
+        socket.emit("iniciarChat");
+
+    socket.on("nuevoChat",data =>{
+        let datos={
+            ...data,
+            hora: moment().format("YYYY-MM-DD HH:mm:ss")
+            }
+            const mensajeSave = new chatModel(datos);
+            mensajeSave.save()
+                .then(()=>console.log("mensaje insertado"))
+                .catch((err)=> {console.log(err); throw err});
+
+            io.sockets.emit("mensaje",datos);
+       
+        })
+    })
 }
 
     routes(){
@@ -76,7 +104,7 @@ class Server{
     }
 
     init(){
-        this.app.listen(this.port, ()=>{
+        this.http.listen(this.port, ()=>{
             console.log(`Escuchando en http://localhost:${this.port}`)
         })
     }
