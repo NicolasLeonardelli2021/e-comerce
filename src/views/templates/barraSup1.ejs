@@ -21,7 +21,9 @@
                         <p> Bienvenido <%= nombre %></p>
                     </div>
                     <div style="margin-left:10px ;">
-                        <img src="/images/pages/admin.png" alt="" style="height: 30px; width: 30px;">
+                            <% if(foto != ""){ %> 
+                        <img src="<%=foto%> " alt="" style="height: 30px; width: 30px;">
+                        <% } %> 
                     </div>
                    
                     <div class="salir">

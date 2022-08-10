@@ -7,7 +7,9 @@ dotenv.config({
 
 let config = {
     port: process.env.PORT,
-    modo: process.env.NODE_ENV
+    modo: process.env.NODE_ENV,
+    email: process.env.EMAIL,
+    service:process.env.SERVICE
 }
 
 let db_credential = {

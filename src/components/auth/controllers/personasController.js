@@ -13,7 +13,7 @@ class Personas {
             let {email,password} = req.body
             // let singleton = new Singleton();
             let personas = await personasServices.login(email,password);
-             if(personas == ""){
+             if(!personas){
                 let text = "Usuario o Contraseña incorrectos"
                 res.render("alert",{text});
             }else{
@@ -26,7 +26,6 @@ class Personas {
                 req.session.rol = personas[0].rol_id;
                 let idCarrito = await personasServices.traerIdCarrito(idUser);
                 req.session.idCarrito = idCarrito[0].id;
-
                 res.redirect("/productos");
             } 
         } catch (error) {
@@ -52,12 +51,19 @@ class Personas {
     }
 
     async upload(req,res,next){
-        const image = req.file.filename;
-      let uploadimage = await personasServices.upload(image)
-      console.log(uploadimage);
-        if(uploadimage){
-            res.render("alert",{});
+        let image = "";
+        console.log(req.file)
+       if (req.file !== undefined){
+       image = req.file.filename;
+       }
+       try {
+        let text = await personasServices.upload(image);
+        if(text){
+            res.render("alert",{text});
         }
+       } catch (error) {
+        console.log(error)
+       }
 
     }
 

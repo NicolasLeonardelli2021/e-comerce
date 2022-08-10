@@ -35,7 +35,7 @@
             <form action="/productos/ing" method="post">
                 <div>
                     <span>Cantidad</span>
-                    <input class="cant" type="number" name="cantidad">
+                    <input class="cant" type="number" name="cantidad" max="<%=  producto.stock %>" min="1">
                 </div>
                 <div>
                     <input id="prodId" name="idProducto" type="hidden" value="<%= producto.id %>">

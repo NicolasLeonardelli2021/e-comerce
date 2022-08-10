@@ -27,7 +27,7 @@
             <form id="formCantidad">
                 <div>
                     <input id="prodId" name="prodId" type="hidden" value="<%= producto.id %>">
-                    <input class="cant" type="number" name="cantidad" value="<%= producto.cantidad %>" >
+                    <input class="cant" type="number" name="cantidad" value="<%= producto.cantidad %>" max="<%= producto.Producto.stock %>" min="1">
                     <p class="stockCarrito">stock <%=producto.Producto.stock %></p>
                     <input type="submit" class="btn btn-outline-success btn-sm" value="Aceptar">
                 </div>

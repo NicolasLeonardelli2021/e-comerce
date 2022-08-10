@@ -1,4 +1,5 @@
 let {createTransport} = require("nodemailer");
+const {config} = require('../../config')
 
 module.exports = {
 
@@ -6,8 +7,8 @@ module.exports = {
 
         
         let host = 'smtp.ethereal.email';
-        let service = 'gmail';
-        let user = 'nicolasleonardelli2012@gmail.com';
+        let service = config.service;
+        let user = config.email;
         let pass = 'smhbdzcerrmgepxm';
         let transport = createTransport({
             host,

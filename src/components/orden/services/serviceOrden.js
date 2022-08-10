@@ -47,17 +47,36 @@ class Orden{
         }
     }
 
-    // Agraga una orden, vacia el carrito y envia el email de la Orden. 
+    // Agraga una orden, vacia el carrito, descuenta stock y envia el email de la Orden. 
     async generar(idUser,idCarrito){
       try {
-       
-         let generar = await orden.create({id_user: `${idUser}`});
+          let leerItems = await item.findAll({
+            attributes: ['id_producto','cantidad'],
+            include: {
+              model: producto,
+              attributes: ['stock']
+            },
+            where: {
+              id_carrito: `${idCarrito}`
+            }
+          });
+          console.log(leerItems);
+        
+          for (const prod of leerItems) {
+            let restaStock = prod.Producto.stock - prod.cantidad
+            await producto.update({stock: restaStock},{
+              where: {
+                id: prod.id_producto
+          }})
+          } 
+
+          let generar = await orden.create({id_user: `${idUser}`});
         let idOrden = generar.id
         let borrarItemsCarrito = await item.update({id_carrito: null, id_orden: `${idOrden}`},{
           where:{
             id_carrito: `${idCarrito}`
           }
-        }) 
+        })
 
         let templates = await this.armarTemplate(idOrden);
         let titulo = "Orden de compra"

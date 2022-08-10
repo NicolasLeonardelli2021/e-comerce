@@ -5,7 +5,8 @@ class Producto{
 
     async traerProductos(req,res,next){
         let name = req.session.nombre;
-        let photo = req.session.photo;
+        let photo = req.session.imagen;
+        console.log(photo);
         //console.log(req)
              try {         
              let array = await productoServices.getProductos();

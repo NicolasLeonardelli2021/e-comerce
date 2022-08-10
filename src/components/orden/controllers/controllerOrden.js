@@ -6,7 +6,7 @@ class Orden{
     async vistaOrden(req,res,next){
         let idUser = req.session.idUser;
         let name = req.session.nombre;
-        let photo = req.session.photo
+        let photo = req.session.imagen
  
         try {
             let datos = await serviceOrden.datosOrden(idUser);
@@ -23,7 +23,7 @@ class Orden{
         let idUser = req.session.idUser;
         let idCarrito = req.session.idCarrito;
         let name = req.session.nombre;
-        let photo = req.session.photo
+        let photo = req.session.imagen
         try {
             let cantCarrito = await serviceOrden.countCarrito(req.session.ids);
             let datos = await serviceOrden.generar(idUser,idCarrito);

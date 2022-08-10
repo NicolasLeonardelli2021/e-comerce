@@ -5,7 +5,7 @@ class Carrito{
     async traerProductos(req,res,next){
         let {idUsuario} = req.body;
         let name = req.session.nombre;
-        let photo = req.session.photo;
+        let photo = req.session.imagen;
         let idCarrito = req.session.idCarrito
         let idUser = req.session.idUser
         try {
