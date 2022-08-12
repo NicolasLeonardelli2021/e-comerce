@@ -7,6 +7,8 @@ module.exports = app =>{
     
     router.get("/", isLogin, ordenController.vistaOrden);
     router.get("/generar", isLogin, ordenController.generar);
+    router.get("/compras",isLogin,ordenController.compras);
+    router.get("/:id", isLogin, ordenController.orden)
 
     /* router.get("/",isLogin, carritoController.traerProductos);
     router.put("/:id", isLogin, carritoController.actualizar)

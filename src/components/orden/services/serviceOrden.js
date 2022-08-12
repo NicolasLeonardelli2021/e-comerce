@@ -187,6 +187,46 @@ class Orden{
       }
   }
 
+  async compras(idUser){
+    try {
+      let res = await orden.findAll({
+        attributes: ['id','fechaHora'],
+        where:{
+          id_user: idUser
+        }
+      })
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async prodOrden(idOrden){
+    try {
+      let res = await item.findAll({
+        attributes:['id','id_producto','cantidad','id_orden'],
+        include:{
+                model: producto,
+                attributes:['imagen','nombre','codigo','stock','precio']
+        },
+        where:{
+              id_orden: idOrden
+          }
+      })
+      return res;
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  async calculoTotal(array){
+    try {
+      let total = await serviceCarrito.calculoTotal(array);
+      return total;
+    } catch (error) {
+      console.log(error)
+    }
+  }
 }
 
 module.exports = new Orden()
