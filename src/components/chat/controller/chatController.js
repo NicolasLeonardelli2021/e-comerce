@@ -7,9 +7,10 @@ class Chat{
         let photo = req.session.photo;
         let cantCarrito = "";
         let idUser = req.session.idUser;
+        let email = req.session.email
         let rolId = req.session.rol;
         let chats = await chatServices.getChat(idUser);
-        res.render("chat",{name,photo,cantCarrito,idUser,chats});
+        res.render("chat",{name,photo,cantCarrito,idUser,chats,email});
         } catch (error) {
             console.log(error)
         }
