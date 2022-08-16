@@ -8,11 +8,8 @@ module.exports = app=>{
     router.get("/",isLogin,productoController.traerProductos);
     router.get("/categoria/:categoria",isLogin,productoController.productosCategoria);
     router.get("/:id",isLogin,productoController.productosId);
-    //router.post("/productos",productoController.ingresarProducto);
     router.post("/ing",isLogin,controllerCarrito.agregarItemCarrito)
-
-    //router.put("/productos",productoController.actualizarProducto);
-    //router.delete("/productos",productoController.borrarProducto);
+    router.post("/buscar",productoController.buscar)
 }
 
 let isLogin = (req,res,next)=>{

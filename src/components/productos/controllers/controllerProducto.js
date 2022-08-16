@@ -57,6 +57,21 @@ class Producto{
 
     }
 
+    async buscar(req,res,next){
+        let name = req.session.nombre;
+        let photo = req.session.imagen;
+        console.log("entro a la funcin")
+        let {buscar} = req.body;
+        console.log(buscar)
+        try {
+            let cantCarrito = await productoServices.countCarrito(req.session.idCarrito);
+            let array = await productoServices.buscar(buscar);
+            res.render("principal",{array,cantCarrito,name, photo})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 }
 
 module.exports = new Producto();

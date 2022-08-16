@@ -1,6 +1,8 @@
 const Productos = require("../../../models/models/Productos");
 const Categoria = require("../../../models/models/Categoria");
 const serviceCarrito = require("../../carrito/service/serviceCarrito")
+const { Op } = require("sequelize");
+
 
 
 class Producto{
@@ -64,6 +66,30 @@ class Producto{
     async countCarrito(idCarrito){
         try {
             let res = serviceCarrito.countCarrito(idCarrito);
+            return res;
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    async buscar(producto){
+        try {
+            let res = await Productos.findAll({
+                where:{
+                    [Op.or]: [
+                      {
+                        codigo: {
+                          [Op.like]: `%${producto}%`
+                        }
+                      },
+                      {
+                        descripcion: {
+                          [Op.like]: `%${producto}%`
+                        }
+                      }
+                    ]
+                  }
+            })
             return res;
         } catch (error) {
             console.log(error)
